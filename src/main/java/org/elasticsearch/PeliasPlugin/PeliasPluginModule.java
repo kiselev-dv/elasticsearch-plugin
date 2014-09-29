@@ -2,7 +2,6 @@ package org.elasticsearch.PeliasPlugin;
 
 import org.elasticsearch.common.inject.AbstractModule;
 import org.elasticsearch.common.settings.Settings;
-import sun.jvmstat.monitor.AbstractMonitor;
 
 /**
  * Created by franciscodans on 29/09/2014.
