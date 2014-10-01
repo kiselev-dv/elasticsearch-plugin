@@ -1,4 +1,4 @@
-package org.elasticsearch.apache.lucene.analysis;
+package org.apache.lucene.analysis;
 
 /**
  * Created by franciscodans on 30/09/2014.
