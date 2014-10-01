@@ -1,6 +1,6 @@
 package org.elasticsearch.index.analysis;
 
-import org.elasticsearch.apache.lucene.analysis.PeliasAnalyzerWrapper;
+import org.apache.lucene.analysis.PeliasAnalyzerWrapper;
 
 public class PeliasAnalysisBinderProcessor extends AnalysisModule.AnalysisBinderProcessor {
 
