@@ -1,6 +1,5 @@
 package org.apache.lucene.analysis;
 
-import com.sun.tools.javac.jvm.ClassFile;
 import org.apache.lucene.util.Version;
 import org.elasticsearch.ElasticSearchIllegalArgumentException;
 import org.elasticsearch.common.inject.Injector;
@@ -45,7 +44,7 @@ public class PeliasAnalyzerWrapper extends Analyzer{
         if(analyzer != null) return;
         AnalysisService analysisService = injector.getInstance(AnalysisService.class);
         String[] sub = settings.getAsArray("sub_analyzers");
-        ArrayList<Analyzer> subAnalyzers = new ArrayList<Analyzer>;
+        ArrayList<Analyzer> subAnalyzers = new ArrayList<Analyzer>();
 
         if (sub == null) {
             throw new ElasticSearchIllegalArgumentException("Analyzer ["+name+"] analyzer of type ["+NAME+"], must have a \"sub_analyzers\" list property");
@@ -74,10 +73,10 @@ public class PeliasAnalyzerWrapper extends Analyzer{
         }
     }
 
-    @Override
     protected ReusableAnalyzerBase.TokenStreamComponents createComponents(String fieldName, Reader reader) {
         if (analyzer == null) init();
-        return this.analyzer.createComponents(fieldName, reader);
+        return null;
+        // return this.analyzer.createComponents(fieldName, reader);
     }
 
     @Override
