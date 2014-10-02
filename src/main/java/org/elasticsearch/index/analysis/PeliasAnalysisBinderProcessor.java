@@ -1,11 +1,9 @@
 package org.elasticsearch.index.analysis;
 
-import org.apache.lucene.analysis.PeliasAnalyzerWrapper;
-
 public class PeliasAnalysisBinderProcessor extends AnalysisModule.AnalysisBinderProcessor {
 
     @Override public void processAnalyzers(AnalyzersBindings analyzersBindings) {
-        analyzersBindings.processAnalyzer(PeliasAnalyzerWrapper.NAME, PeliasAnalyzerProvider.class);
+        analyzersBindings.processAnalyzer("pelias-analysis", PeliasAnalyzerProvider.class);
     }
 
 }
