@@ -3,12 +3,8 @@ package org.apache.lucene.analysis;
 import org.apache.lucene.analysis.core.LowerCaseFilter;
 import org.apache.lucene.analysis.core.WhitespaceTokenizer;
 import org.apache.lucene.analysis.miscellaneous.WordDelimiterFilter;
-import org.apache.lucene.analysis.synonym.SynonymFilter;
-import org.apache.lucene.analysis.synonym.SynonymMap;
 import org.apache.lucene.util.Version;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.Reader;
 
 
