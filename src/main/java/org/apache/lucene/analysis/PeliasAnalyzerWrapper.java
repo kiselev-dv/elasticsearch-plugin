@@ -1,7 +1,8 @@
 package org.apache.lucene.analysis;
 
 import org.apache.lucene.util.Version;
-import org.elasticsearch.ElasticSearchIllegalArgumentException;
+import org.elasticsearch.ElasticsearchException;
+import org.elasticsearch.ElasticsearchIllegalArgumentException;
 import org.elasticsearch.common.inject.Injector;
 import org.elasticsearch.common.logging.ESLogger;
 import org.elasticsearch.common.logging.ESLoggerFactory;
@@ -15,19 +16,12 @@ import java.util.ArrayList;
 public class PeliasAnalyzerWrapper extends Analyzer{
 
     public static final String NAME = "pelias-analysis";
-
     private final ESLogger logger;
     private final Settings settings;
     private final String name;
     private final Injector injector;
     private final Version version;
-
     private PeliasAnalyzer analyzer;
-
-    @Override
-    public TokenStream tokenStream(String s, Reader reader) {
-        return null;
-    }
 
     public PeliasAnalyzerWrapper(Version version, String name, Settings settings, Injector injector){
 
@@ -47,7 +41,7 @@ public class PeliasAnalyzerWrapper extends Analyzer{
         ArrayList<Analyzer> subAnalyzers = new ArrayList<Analyzer>();
 
         if (sub == null) {
-            throw new ElasticSearchIllegalArgumentException("Analyzer ["+name+"] analyzer of type ["+NAME+"], must have a \"sub_analyzers\" list property");
+            throw new ElasticsearchIllegalArgumentException("Analyzer ["+name+"] analyzer of type ["+NAME+"], must have a \"sub_analyzers\" list property");
         }
 
         for (String subname: sub){
@@ -72,11 +66,10 @@ public class PeliasAnalyzerWrapper extends Analyzer{
             this.analyzer.setDeduplicationEnabled(deduplication);
         }
     }
-
-    protected ReusableAnalyzerBase.TokenStreamComponents createComponents(String fieldName, Reader reader) {
+    @Override
+    protected TokenStreamComponents createComponents(String fieldName, Reader reader) {
         if (analyzer == null) init();
-        return null;
-        // return this.analyzer.createComponents(fieldName, reader);
+        return this.analyzer.createComponents(fieldName, reader);
     }
 
     @Override
