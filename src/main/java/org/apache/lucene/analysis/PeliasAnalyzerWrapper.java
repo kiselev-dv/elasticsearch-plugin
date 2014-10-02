@@ -72,8 +72,19 @@ public class PeliasAnalyzerWrapper extends Analyzer{
         if (deduplication != null) {
             this.analyzer.setDeduplicationEnabled(deduplication);
         }
-
-
     }
+
+    @Override
+    protected ReusableAnalyzerBase.TokenStreamComponents createComponents(String fieldName, Reader reader) {
+        if (analyzer == null) init();
+        return this.analyzer.createComponents(fieldName, reader);
+    }
+
+    @Override
+    public void close() {
+        if(analyzer == null) init();
+        super.close();
+    }
+
 
 }
