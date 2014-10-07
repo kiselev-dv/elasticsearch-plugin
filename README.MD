@@ -33,7 +33,7 @@ Our current analysis stack goes like this:
 
 6.- **Retokenizing**: The previous steps may have added spaces or punctuation, which means we need to re-separate them, like in our previous example:
 
-> ```"Johnson&Johnson" => ["johnson and johnson"] => ["johnson", "and", "johnson"]
+> ```"Johnson&Johnson" => ["johnson and johnson"] => ["johnson", "and", "johnson"]```
 
 ###Requirements
 There needs to be an ElasticSearch instance running on your server, so we'll assume you have Java installed as well. To package and install the plugin, you need [Maven](http://maven.apache.org/).
@@ -50,13 +50,13 @@ bin/plugin -url file:./target/release/elasticsearch-PeliasPlugin-1.3.4.zip -inst
 Once the plugin is installed, you should restart ES and add the analyzer to your settings mapping, as shown [in the ES site]("http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/analysis-custom-analyzer.html").
 
 ```json
-	"analysis": {
-    	"analyzer": {
-	        "pelias": {
-	          "type": "pelias-analysis"
-	        }
+    "analysis": {
+        "analyzer": {
+	    "pelias": {
+	        "type": "pelias-analysis"
+	    }
+        }
     }
-}
 ```
 
 And try it with Elasticsearch's Analyze API
