@@ -31,6 +31,10 @@ Our current analysis stack goes like this:
 > ```["old", "st", "station"] => ["old", "street", "station"]```
 > ```["st", "michaels"] => ["saint", "michaels"]```
 
+6.- **Retokenizing**: The previous steps may have added spaces or punctuation, which means we need to re-separate them, like in our previous example:
+
+> ```"Johnson&Johnson" => ["johnson and johnson"] => ["johnson", "and", "johnson"]
+
 ###Requirements
 There needs to be an ElasticSearch instance running on your server, so we'll assume you have Java installed as well. To package and install the plugin, you need [Maven]("http://maven.apache.org/").
 
