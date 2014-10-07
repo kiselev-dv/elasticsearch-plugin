@@ -26,7 +26,7 @@ Our current analysis stack goes like this:
 > ```["highbury", "&", "islington"] => ["highbury", "and", "islington"]```
 > ```["johnson&johnson"] => ["johnson and johnson"]``` *(notice we need to retokenize after this)*
 
-5.- **Synonym mapping**: Read more about it [here]("https://github.com/pelias/synonyms")
+5.- **Synonym mapping**: Read more about it [here](https://github.com/pelias/synonyms)
 
 > ```["old", "st", "station"] => ["old", "street", "station"]```
 > ```["st", "michaels"] => ["saint", "michaels"]```
@@ -36,14 +36,31 @@ Our current analysis stack goes like this:
 > ```"Johnson&Johnson" => ["johnson and johnson"] => ["johnson", "and", "johnson"]
 
 ###Requirements
-There needs to be an ElasticSearch instance running on your server, so we'll assume you have Java installed as well. To package and install the plugin, you need [Maven]("http://maven.apache.org/").
+There needs to be an ElasticSearch instance running on your server, so we'll assume you have Java installed as well. To package and install the plugin, you need [Maven](http://maven.apache.org/).
 
 ###Installation
 
 ```shell
+mvn clean package
 bin/plugin -url file:./target/release/elasticsearch-PeliasPlugin-1.3.4.zip -install pelias-plugin
 ```
 
 ###Usage
 
 Once the plugin is installed, you should restart ES and add the analyzer to your settings mapping, as shown [in the ES site]("http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/analysis-custom-analyzer.html").
+
+```json
+	"analysis": {
+    	"analyzer": {
+	        "pelias": {
+	          "type": "pelias-analysis"
+	        }
+    }
+}
+```
+
+And try it with Elasticsearch's Analyze API
+
+```
+http://localhost:9200/pelias/_analyze?text=whatever&analyzer=pelias
+```
